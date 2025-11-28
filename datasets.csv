@@ -1,0 +1,127 @@
+catalog,changed_by_name,changed_on_delta_humanized,changed_on_utc,datasource_type,default_endpoint,description,explore_url,extra,id,kind,owners,schema,sql,table_name,uuid,changed_by.first_name,changed_by.id,changed_by.last_name,database.database_name,database.id
+mhe,Admin User,9 days ago,2025-11-19T10:29:31.966942+0000,table,,,/explore/?datasource_type=table&datasource_id=40,,40,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"select t.gestion
+, t.mes
+, t.mes_abrev
+, case when t.mes < 10 then '0' || t.mes::varchar || '-' || t.mes_abrev else t.mes::varchar || '-' || t.mes_abrev end as mes_str
+, t.fecha
+, r.tipo_regalias_2
+, r.tipo_regalia
+, r.gobierno
+, r.region
+, sum(d.monto)/1000000 as monto
+from dat_regalias_pagadas d
+inner join dim_tiempo t on t.tiempo_dim_id = d.tiempo_dim_id
+inner join dim_destino r on r.destino_dim_id = d.destino_dim_id
+where d.fuente_dim_id = 2
+and gestion >= 2006
+and r.destino_dim_id <> 9
+group by t.gestion
+, t.mes
+, t.mes_abrev
+, t.fecha
+, r.tipo_regalias_2
+, r.tipo_regalia
+, r.gobierno
+, r.region
+order by t.gestion
+, t.mes
+, t.mes_abrev
+, t.fecha
+, r.tipo_regalias_2
+, r.tipo_regalia
+, r.gobierno
+, r.region",Regalias,c3d6052e-ad7c-47f6-b931-0a7762e9253c,Admin,1,User,mhe,6
+carguios_anh,Admin User,3 months ago,2025-08-11T18:26:53.500960+0000,table,,,/explore/?datasource_type=table&datasource_id=8,,8,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"WITH fechas AS (
+    SELECT generate_series(
+        DATE '2025-06-01',  -- Cambiar por fecha_inicio
+        DATE '2025-06-30',  -- Cambiar por fecha_fin
+        INTERVAL '1 day'
+    )::date AS fecha_actual
+),
+CombinedData AS (
+    SELECT 
+        rs.nombre_estacion, 
+        rs.tipo_sucursal, 
+        rs.propietario, 
+        rs.representante_legal, 
+        rs.nit, 
+        rs.departamento, 
+        rs.municipio, 
+        rs.direccion, 
+        rs.tipo_area, 
+        rs.tipo_dependencia,
+        f.fecha_actual AS fecha_combined,
+        d.volumen AS volumen_diesel,
+        ge.volumen AS volumen_gasolina_e,
+        gep.volumen AS volumen_gasolina_e_plus,
+        gpp.volumen AS volumen_gasolina_premiun_plus,
+        gse.volumen AS volumen_gasolina_super_etanol,
+        gup.volumen AS volumen_gasolina_ultra_premium,
+        dp.volumen AS volumen_diesel_premium,
+        db.volumen AS volumen_diesel_bio
+    FROM 
+        fechas f
+    CROSS JOIN 
+        registro_sucursales rs
+    LEFT JOIN 
+        ""Diesel"" d ON d.id_cod = rs.id_cod_unico AND d.fecha = f.fecha_actual
+    LEFT JOIN 
+        gasolina_especial ge ON ge.id_cod = rs.id_cod_unico AND ge.fecha = f.fecha_actual
+    LEFT JOIN 
+        gasolina_especial_plus gep ON gep.id_cod = rs.id_cod_unico AND gep.fecha = f.fecha_actual
+    LEFT JOIN 
+        gasolina_super_etanol gse ON gse.id_cod = rs.id_cod_unico AND gse.fecha = f.fecha_actual
+    LEFT JOIN 
+        gasolina_ultra_premium gup ON gup.id_cod = rs.id_cod_unico AND gup.fecha = f.fecha_actual
+    LEFT JOIN 
+        gasolina_premiun_plus gpp ON gpp.id_cod = rs.id_cod_unico AND gpp.fecha = f.fecha_actual
+    LEFT JOIN 
+        diesel_plus dp ON dp.id_cod = rs.id_cod_unico AND dp.fecha = f.fecha_actual
+    LEFT JOIN 
+        diesel_bio db ON db.id_cod = rs.id_cod_unico AND db.fecha = f.fecha_actual
+)
+SELECT DISTINCT * FROM CombinedData",consultas de ventas anh,48c8b232-b0b9-4c38-8c1a-811a84d373c9,Admin,1,User,ventas dia anh,3
+mhe,Admin User,10 days ago,2025-11-18T17:51:56.214504+0000,table,,,/explore/?datasource_type=table&datasource_id=30,,30,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"select gestion::varchar, mes, mes_corto, case when mes < 10 then '0' || mes::varchar || '-' || mes_corto else mes::varchar || '-' || mes_corto end as mes_str,  fecha, gas_natural_mmmcd, gas_natural_variacion, petroleo_mbpd, petroleo_variacion, glp_tmd, glp_variacion from tmp_produccion_mensual",Producción Mensual,80ee8610-ab95-435a-abf4-97308d3b696b,Admin,1,User,mhe,6
+datos_anh_ypfb,Admin User,15 days ago,2025-11-13T22:07:17.570595+0000,table,,,/explore/?datasource_type=table&datasource_id=14,,14,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,produccion_gnv,befb4eab-98c2-4338-ab58-6b6c3a2cc097,Admin,1,User,base de datos anh,1
+LlamadasMhe,Admin User,3 days ago,2025-11-25T19:30:48.345958+0000,table,,,/explore/?datasource_type=table&datasource_id=49,,49,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"SELECT ui.funcionario,
+lf.llamadas_saliente, 
+COUNT(*) AS total_llamadas, 
+CASE 
+        WHEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))::int > 0 
+            THEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))
+        ELSE 
+            SUM(lf.duracion_seg)::numeric
+    END AS minutos_finales
+FROM llamadas_fin lf 
+inner join usuario_interno ui on ui.interno = lf.llamadas_saliente 
+GROUP by ui.funcionario,lf.llamadas_saliente 
+ORDER BY minutos_finales DESC;
+",llamadas_mhe_TOTAL 11/25/2025 12:21:24,31b558d3-739d-4e6c-8968-b3d9289b3828,Admin,1,User,llamadasMhe,7
+LlamadasMhe,Admin User,3 days ago,2025-11-25T15:45:38.113949+0000,table,,,/explore/?datasource_type=table&datasource_id=48,,48,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"SELECT 
+    lf.llamadas_saliente as Interno,
+    COUNT(*) AS Total_Llamadas,
+     (SUM(lf.duracion_min) + (SUM(lf.duracion_seg) / 60))::int AS Minutos_Totales
+FROM llamadas_fin lf
+GROUP BY lf.llamadas_saliente
+HAVING (SUM(lf.duracion_min) * 60 + SUM(lf.duracion_seg)) > 900
+ORDER BY Minutos_Totales DESC;",llamadas_mhe_TOTAL 11/25/2025 11:44:22,27ffd693-4821-4fca-8181-ae767354c6ac,Admin,1,User,llamadasMhe,7
+datos_anh_ypfb,Admin User,10 days ago,2025-11-18T22:34:23.516374+0000,table,,,/explore/?datasource_type=table&datasource_id=37,,37,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,gasolina,9530bc22-6be2-4c9b-a106-73a6c2b1fd8f,Admin,1,User,base de datos anh,1
+datos_anh_ypfb,Admin User,11 days ago,2025-11-17T14:25:58.903813+0000,table,,,/explore/?datasource_type=table&datasource_id=15,,15,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,glpmi,8424544c-22c6-4baf-b2fd-5105fe210cb5,Admin,1,User,base de datos anh,1
+datos_anh_ypfb,Admin User,11 days ago,2025-11-17T22:13:42.849367+0000,table,,,/explore/?datasource_type=table&datasource_id=21,,21,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,comercializacion_urea,f6c482a7-a2a7-4609-a377-83fe99a8dc85,Admin,1,User,base de datos anh,1
+datos_anh_ypfb,Admin User,11 days ago,2025-11-17T17:39:15.736846+0000,table,,,/explore/?datasource_type=table&datasource_id=16,,16,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,urea,081fcf19-3980-4372-8bfd-45e75bfc338b,Admin,1,User,base de datos anh,1
+mhe,Admin User,10 days ago,2025-11-18T14:42:11.025534+0000,table,,,/explore/?datasource_type=table&datasource_id=27,,27,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"select gestion::varchar as gestion, fecha, gas_natural_mmmcd, gas_natural_variacion, liq_mbpd, liq_variacion, glp_tmd, glp_variacion from tmp_produccion_anual",Produccion Anual,621e6abc-8e04-4214-9f7a-8c1ce1e8425b,Admin,1,User,mhe,6
+datos_anh_ypfb,Admin User,10 days ago,2025-11-18T13:30:44.515151+0000,table,,,/explore/?datasource_type=table&datasource_id=26,,26,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,prodcanerias,383a8512-bb42-43dc-bdce-68ee24099b83,Admin,1,User,base de datos anh,1
+datos_anh_ypfb,Admin User,11 days ago,2025-11-17T20:36:00.844990+0000,table,,,/explore/?datasource_type=table&datasource_id=17,,17,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,glpme,673550fd-8ea2-4c3f-a095-c694338b7f98,Admin,1,User,base de datos anh,1
+mhe,Admin User,10 days ago,2025-11-18T02:23:30.044103+0000,table,,,/explore/?datasource_type=table&datasource_id=22,,22,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"select gestion, beneficiario, renta_gestion, variacion from tmp_renta_petrolera
+order by gestion",Renta Petrolera,872f0c08-5627-4eff-9c1c-2b311e0fe618,Admin,1,User,mhe,6
+datos_anh_ypfb,Admin User,11 days ago,2025-11-17T21:07:06.709056+0000,table,,,/explore/?datasource_type=table&datasource_id=18,,18,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,conversiones_gnv,13110eaf-9472-41f8-8fb9-c6906dff6656,Admin,1,User,base de datos anh,1
+mhe,Admin User,10 days ago,2025-11-18T15:40:06.120248+0000,table,,,/explore/?datasource_type=table&datasource_id=29,,29,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"select gestion::varchar as gestion, max as fecha, departamento, gas_natural_mmmcd, petroleo_mbpd, glp_tmd from tmp_produccion_anual_departamento ",Producción por Departamento,066714af-4e6f-4130-a773-32e3b16763f7,Admin,1,User,mhe,6
+mhe,Admin User,10 days ago,2025-11-18T20:46:19.542339+0000,table,,,/explore/?datasource_type=table&datasource_id=34,,34,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"select gestion::varchar gestion, mes
+, mes_corto
+, case when mes < 10 then '0' || mes::varchar || '-' || mes_corto else mes::varchar || '-' || mes_corto end as mes_str
+, departamento, sum(gas_natural_mmmcd) as gas_natural, sum(petroleo_mbpd) as petroleo, sum(glp_tmd) as glp_tmd from tmp_produccion_mensual_campo 
+group by gestion, mes, mes_corto, departamento
+order by gestion, mes, mes_corto, departamento",Producción Mensual por Departamento,fc1d720d-a1a9-4f21-bca3-14d40aa57fc6,Admin,1,User,mhe,6
+mhe,Admin User,10 days ago,2025-11-18T03:24:00.639225+0000,table,,,/explore/?datasource_type=table&datasource_id=24,,24,virtual,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,"select gestion, componente, renta_gestion, variacion * 100 as variacion from tmp_renta_petrolera_componente ",Renta Petrolera Componente,b2827486-7ecd-47ee-ab4b-44053278d15f,Admin,1,User,mhe,6
+datos_anh_ypfb,Admin User,10 days ago,2025-11-18T17:55:02.899618+0000,table,,,/explore/?datasource_type=table&datasource_id=31,,31,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,gasnaturalme,f194b130-eb42-4439-9fab-09ca91a4cdad,Admin,1,User,base de datos anh,1
+datos_anh_ypfb,Admin User,10 days ago,2025-11-18T15:33:51.631848+0000,table,,,/explore/?datasource_type=table&datasource_id=28,,28,physical,"[{'first_name': 'Admin', 'id': 1, 'last_name': 'User'}]",public,,refinacion,10ba085d-956e-429c-bdea-7b57570439dc,Admin,1,User,base de datos anh,1
