@@ -15,7 +15,7 @@ datadir = Path("data")
 def list_datasets(session):
     datasets_json = session.get(f"{BASE_URL}/api/v1/dataset/", verify=False).json()
     datasets_df = pd.json_normalize(datasets_json["result"])
-    datasets_df[
+    return datasets_df[
         [
             "catalog",
             "changed_on_utc",
@@ -28,7 +28,6 @@ def list_datasets(session):
             "database.id",
         ]
     ]
-    return datasets_df
 
 
 def fetch_dataset(session, dataset_id, chunk_size=10000, max_rows=None, verify=False):
