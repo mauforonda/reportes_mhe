@@ -5,6 +5,8 @@ import pandas as pd
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from pathlib import Path
 from slugify import slugify
+import os
+from datetime import datetime, timezone
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 BASE_URL = "https://reportes.mhe.gob.bo"
@@ -94,20 +96,86 @@ def fetch_dataset(session, dataset_id, chunk_size=10000, max_rows=None, verify=F
     return pd.DataFrame(all_rows)
 
 
+def log_changes(new_df, datasets_path="datasets.csv", log_path="log.csv"):
+    try:
+        old_df = pd.read_csv(datasets_path)
+    except FileNotFoundError:
+        new_df.to_csv(datasets_path, index=False)
+        return
+
+    key = ["catalog", "database.database_name", "table_name"]
+    old = old_df.set_index(key)
+    new = new_df.set_index(key)
+    ts = datetime.now(timezone.utc).isoformat()
+    events = []
+
+    added = new.index.difference(old.index)
+    if len(added):
+        for _, r in new.loc[added].reset_index().iterrows():
+            events.append(
+                {
+                    "event_type": "added",
+                    "catalog": r["catalog"],
+                    "database": r["database.database_name"],
+                    "table": r["table_name"],
+                    "timestamp": ts,
+                }
+            )
+
+    deleted = old.index.difference(new.index)
+    if len(deleted):
+        for _, r in old.loc[deleted].reset_index().iterrows():
+            events.append(
+                {
+                    "event_type": "deleted",
+                    "catalog": r["catalog"],
+                    "database": r["database.database_name"],
+                    "table": r["table_name"],
+                    "timestamp": ts,
+                }
+            )
+
+    common = new.index.intersection(old.index)
+    if len(common):
+        new_co = new["changed_on_utc"].reindex(common)
+        old_co = old["changed_on_utc"].reindex(common)
+        changed = new.loc[common][new_co != old_co]
+        for _, r in changed.reset_index().iterrows():
+            events.append(
+                {
+                    "event_type": "modified",
+                    "catalog": r["catalog"],
+                    "database": r["database.database_name"],
+                    "table": r["table_name"],
+                    "timestamp": ts,
+                }
+            )
+
+    if events:
+        events_df = pd.DataFrame(events)
+        header = not Path(log_path).exists()
+        events_df.to_csv(log_path, mode="a", header=header, index=False)
+
+    new_df.to_csv(datasets_path, index=False)
+
+
 print("Listing datasets ...")
 datasets = list_datasets(session)
-datasets.to_csv("datasets.csv", index=False)
+print("Updating log ...")
+log_changes(datasets)
 print("Fetching datasets ...")
 for i, dataset in datasets.iterrows():
+    filedir = datadir / dataset["catalog"]
     filename = (
-        "_".join(
+        ".".join(
             [
-                slugify(dataset[i])
-                for i in ["catalog", "database.database_name", "table_name"]
+                slugify(dataset[i], separator="_")
+                for i in ["database.database_name", "table_name"]
             ]
         )
         + ".csv"
     )
     print(f"Fetching {filename}")
     df = fetch_dataset(session, dataset["id"])
-    df.to_csv(datadir / filename, index=False)
+    os.makedirs(filedir, exist_ok=True)
+    df.to_csv(filedir / filename, index=False)
