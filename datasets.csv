@@ -31,6 +31,36 @@ order by t.gestion
 , r.tipo_regalia
 , r.gobierno
 , r.region",Regalias,mhe,6
+LlamadasMhe,2025-12-03T15:24:16.850948+0000,53,virtual,public,"SELECT ui.funcionario,
+lf.llamadas_saliente, 
+COUNT(*) AS total_llamadas, 
+lf.mes,
+CASE 
+        WHEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))::int > 0 
+            THEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))
+        ELSE 
+            SUM(lf.duracion_seg)::numeric
+    END AS minutos_finales
+FROM llamadas_fin lf 
+inner join usuario_interno ui on ui.interno = lf.llamadas_saliente 
+WHERE lf.mes = 'NOVIEMBRE'
+GROUP by ui.funcionario,lf.llamadas_saliente , lf.mes 
+ORDER BY llamadas_saliente DESC;",NOVIEMBRE_TABLA,llamadasMhe,7
+LlamadasMhe,2025-12-03T15:05:07.573911+0000,51,virtual,public,"SELECT ui.funcionario,
+lf.llamadas_saliente, 
+COUNT(*) AS total_llamadas, 
+lf.mes,
+CASE 
+        WHEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))::int > 0 
+            THEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))
+        ELSE 
+            SUM(lf.duracion_seg)::numeric
+    END AS minutos_finales
+FROM llamadas_fin lf 
+inner join usuario_interno ui on ui.interno = lf.llamadas_saliente 
+WHERE lf.mes = 'NOVIEMBRE'
+GROUP by ui.funcionario,lf.llamadas_saliente , lf.mes 
+ORDER BY llamadas_saliente DESC;",cargado de noviembre,llamadasMhe,7
 carguios_anh,2025-08-11T18:26:53.500960+0000,8,virtual,public,"WITH fechas AS (
     SELECT generate_series(
         DATE '2025-06-01',  -- Cambiar por fecha_inicio
@@ -82,6 +112,21 @@ CombinedData AS (
 )
 SELECT DISTINCT * FROM CombinedData",consultas de ventas anh,ventas dia anh,3
 mhe,2025-11-18T17:51:56.214504+0000,30,virtual,public,"select gestion::varchar, mes, mes_corto, case when mes < 10 then '0' || mes::varchar || '-' || mes_corto else mes::varchar || '-' || mes_corto end as mes_str,  fecha, gas_natural_mmmcd, gas_natural_variacion, petroleo_mbpd, petroleo_variacion, glp_tmd, glp_variacion from tmp_produccion_mensual",Producción Mensual,mhe,6
+LlamadasMhe,2025-12-03T15:21:19.011032+0000,52,virtual,public,"SELECT ui.funcionario,
+lf.llamadas_saliente, 
+COUNT(*) AS total_llamadas, 
+lf.mes,
+CASE 
+        WHEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))::int > 0 
+            THEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))
+        ELSE 
+            SUM(lf.duracion_seg)::numeric
+    END AS minutos_finales
+FROM llamadas_fin lf 
+inner join usuario_interno ui on ui.interno = lf.llamadas_saliente 
+WHERE lf.mes = 'NOVIEMBRE'
+GROUP by ui.funcionario,lf.llamadas_saliente , lf.mes 
+ORDER BY llamadas_saliente DESC;",Noviembre tabla,llamadasMhe,7
 datos_anh_ypfb,2025-11-13T22:07:17.570595+0000,14,physical,public,,produccion_gnv,base de datos anh,1
 LlamadasMhe,2025-11-25T19:30:48.345958+0000,49,virtual,public,"SELECT ui.funcionario,
 lf.llamadas_saliente, 
@@ -97,6 +142,35 @@ inner join usuario_interno ui on ui.interno = lf.llamadas_saliente
 GROUP by ui.funcionario,lf.llamadas_saliente 
 ORDER BY minutos_finales DESC;
 ",llamadas_mhe_TOTAL 11/25/2025 12:21:24,llamadasMhe,7
+LlamadasMhe,2025-12-03T14:39:19.830662+0000,50,virtual,public,"SELECT ui.funcionario,
+lf.llamadas_saliente, 
+COUNT(*) AS total_llamadas, 
+lf.mes,
+CASE 
+        WHEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))::int > 0 
+            THEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))
+        ELSE 
+            SUM(lf.duracion_seg)::numeric
+    END AS minutos_finales
+FROM llamadas_fin lf 
+inner join usuario_interno ui on ui.interno = lf.llamadas_saliente 
+GROUP by ui.funcionario,lf.llamadas_saliente , lf.mes 
+ORDER BY llamadas_saliente DESC;
+",LLAMADAS OCTUBRE NOVIEMBRE,llamadasMhe,7
+LlamadasMhe,2025-12-03T15:27:07.558461+0000,54,virtual,public,"SELECT ui.funcionario,
+lf.llamadas_saliente, 
+COUNT(*) AS total_llamadas, 
+CASE 
+        WHEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))::int > 0 
+            THEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))
+        ELSE 
+            SUM(lf.duracion_seg)::numeric
+    END AS minutos_finales
+FROM llamadas_fin lf 
+inner join usuario_interno ui on ui.interno = lf.llamadas_saliente 
+WHERE lf.mes = 'NOVIEMBRE'
+GROUP by ui.funcionario,lf.llamadas_saliente
+ORDER BY total_llamadas desc;",NOVIEMBRE_TABLA_FIN,llamadasMhe,7
 LlamadasMhe,2025-11-25T15:45:38.113949+0000,48,virtual,public,"SELECT 
     lf.llamadas_saliente as Interno,
     COUNT(*) AS Total_Llamadas,
@@ -115,13 +189,3 @@ datos_anh_ypfb,2025-11-17T20:36:00.844990+0000,17,physical,public,,glpme,base de
 mhe,2025-11-18T02:23:30.044103+0000,22,virtual,public,"select gestion, beneficiario, renta_gestion, variacion from tmp_renta_petrolera
 order by gestion",Renta Petrolera,mhe,6
 datos_anh_ypfb,2025-11-17T21:07:06.709056+0000,18,physical,public,,conversiones_gnv,base de datos anh,1
-mhe,2025-11-18T15:40:06.120248+0000,29,virtual,public,"select gestion::varchar as gestion, max as fecha, departamento, gas_natural_mmmcd, petroleo_mbpd, glp_tmd from tmp_produccion_anual_departamento ",Producción por Departamento,mhe,6
-mhe,2025-11-18T20:46:19.542339+0000,34,virtual,public,"select gestion::varchar gestion, mes
-, mes_corto
-, case when mes < 10 then '0' || mes::varchar || '-' || mes_corto else mes::varchar || '-' || mes_corto end as mes_str
-, departamento, sum(gas_natural_mmmcd) as gas_natural, sum(petroleo_mbpd) as petroleo, sum(glp_tmd) as glp_tmd from tmp_produccion_mensual_campo 
-group by gestion, mes, mes_corto, departamento
-order by gestion, mes, mes_corto, departamento",Producción Mensual por Departamento,mhe,6
-mhe,2025-11-18T03:24:00.639225+0000,24,virtual,public,"select gestion, componente, renta_gestion, variacion * 100 as variacion from tmp_renta_petrolera_componente ",Renta Petrolera Componente,mhe,6
-datos_anh_ypfb,2025-11-18T17:55:02.899618+0000,31,physical,public,,gasnaturalme,base de datos anh,1
-datos_anh_ypfb,2025-11-18T15:33:51.631848+0000,28,physical,public,,refinacion,base de datos anh,1
