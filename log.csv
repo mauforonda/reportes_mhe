@@ -9,3 +9,7 @@ deleted,datos_anh_ypfb,base de datos anh,refinacion,2025-12-04T05:14:40.416994+0
 deleted,mhe,mhe,Producción Mensual por Departamento,2025-12-04T05:14:40.416994+00:00
 deleted,mhe,mhe,Producción por Departamento,2025-12-04T05:14:40.416994+00:00
 deleted,mhe,mhe,Renta Petrolera Componente,2025-12-04T05:14:40.416994+00:00
+added,LlamadasMhe,llamadasMhe,LLAMADAS DE DICIEMBRE,2026-01-14T05:19:02.280920+00:00
+added,LlamadasMhe,llamadasMhe,TABLA DICIEMBRE,2026-01-14T05:19:02.280920+00:00
+deleted,datos_anh_ypfb,base de datos anh,conversiones_gnv,2026-01-14T05:19:02.280920+00:00
+deleted,mhe,mhe,Renta Petrolera,2026-01-14T05:19:02.280920+00:00
