@@ -111,6 +111,20 @@ CombinedData AS (
         diesel_bio db ON db.id_cod = rs.id_cod_unico AND db.fecha = f.fecha_actual
 )
 SELECT DISTINCT * FROM CombinedData",consultas de ventas anh,ventas dia anh,3
+LlamadasMhe,2026-01-14T23:01:41.417899+0000,57,virtual,public,"SELECT ui.funcionario,
+lf.llamadas_saliente, 
+COUNT(*) AS total_llamadas, 
+CASE 
+        WHEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))::int > 0 
+            THEN (SUM(lf.duracion_min)+ (SUM(lf.duracion_seg)/60))
+        ELSE 
+            SUM(lf.duracion_seg)::numeric
+    END AS minutos_finales
+FROM llamadas_fin lf 
+inner join usuario_interno ui on ui.interno = lf.llamadas_saliente 
+WHERE lf.mes = 'DICIEMBRE2'
+GROUP by ui.funcionario,lf.llamadas_saliente
+ORDER BY total_llamadas desc;",LLAMADAS_CENTRAL2,llamadasMhe,7
 mhe,2025-11-18T17:51:56.214504+0000,30,virtual,public,"select gestion::varchar, mes, mes_corto, case when mes < 10 then '0' || mes::varchar || '-' || mes_corto else mes::varchar || '-' || mes_corto end as mes_str,  fecha, gas_natural_mmmcd, gas_natural_variacion, petroleo_mbpd, petroleo_variacion, glp_tmd, glp_variacion from tmp_produccion_mensual",Producción Mensual,mhe,6
 LlamadasMhe,2025-12-03T15:21:19.011032+0000,52,virtual,public,"SELECT ui.funcionario,
 lf.llamadas_saliente, 
@@ -215,4 +229,3 @@ datos_anh_ypfb,2025-11-17T22:13:42.849367+0000,21,physical,public,,comercializac
 datos_anh_ypfb,2025-11-17T17:39:15.736846+0000,16,physical,public,,urea,base de datos anh,1
 mhe,2025-11-18T14:42:11.025534+0000,27,virtual,public,"select gestion::varchar as gestion, fecha, gas_natural_mmmcd, gas_natural_variacion, liq_mbpd, liq_variacion, glp_tmd, glp_variacion from tmp_produccion_anual",Produccion Anual,mhe,6
 datos_anh_ypfb,2025-11-18T13:30:44.515151+0000,26,physical,public,,prodcanerias,base de datos anh,1
-datos_anh_ypfb,2025-11-17T20:36:00.844990+0000,17,physical,public,,glpme,base de datos anh,1
