@@ -241,6 +241,7 @@ IDH,2025,6,Jun,06-Jun,1748736000000.0,IDH,IDH,IDH,43.584612
 Beni,2009,12,Dic,12-Dic,1259625600000.0,Regalia,Regalia Compensatoria,Beni,1.20408682
 Beni,2019,6,Jun,06-Jun,1559347200000.0,Regalia,Regalia Compensatoria,Beni,1.33767081
 Chuquisaca,2012,12,Dic,12-Dic,1354320000000.0,Regalia,Regalia Departamental,Chuquisaca,4.32561352
+IDH,2025,12,Dic,12-Dic,1764547200000.0,IDH,IDH,IDH,31.47981546
 IDH,2015,3,Mar,03-Mar,1425168000000.0,IDH,IDH,IDH,164.89968
 Cochabamba,2024,12,Dic,12-Dic,1733011200000.0,Regalia,Regalia Departamental,Cochabamba,0.24630232
 Tarija,2018,6,Jun,06-Jun,1527811200000.0,Regalia,Regalia Departamental,Tarija,9.52940872
@@ -715,6 +716,7 @@ Cochabamba,2012,4,Abr,04-Abr,1333238400000.0,Regalia,Regalia Departamental,Cocha
 TGN,2022,2,Feb,02-Feb,1643673600000.0,Participacion,Participacion TGN,TGN,13.45587346
 Tarija,2020,11,Nov,11-Nov,1604188800000.0,Regalia,Regalia Departamental,Gran Chaco,4.73063325
 Tarija,2008,7,Jul,07-Jul,1214870400000.0,Regalia,Regalia Departamental,Gran Chaco,
+Santa Cruz,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Departamental,Santa Cruz,4.38792629
 Pando,2011,3,Mar,03-Mar,1298937600000.0,Regalia,Regalia Compensatoria,Pando,0.88151737
 Tarija,2009,10,Oct,10-Oct,1254355200000.0,Regalia,Regalia Departamental,Gran Chaco,
 Pando,2008,11,Nov,11-Nov,1225497600000.0,Regalia,Regalia Compensatoria,Pando,1.0736316
@@ -1047,6 +1049,7 @@ Tarija,2013,6,Jun,06-Jun,1370044800000.0,Regalia,Regalia Departamental,Tarija,19
 IDH,2011,7,Jul,07-Jul,1309478400000.0,IDH,IDH,IDH,100.997581
 Chuquisaca,2017,3,Mar,03-Mar,1488326400000.0,Regalia,Regalia Departamental,Chuquisaca,2.66237966
 IDH,2017,4,Abr,04-Abr,1491004800000.0,IDH,IDH,IDH,59.316449
+La Paz,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Departamental,La Paz,0.00025483
 Beni,2013,6,Jun,06-Jun,1370044800000.0,Regalia,Regalia Compensatoria,Beni,3.30490516
 Tarija,2023,11,Nov,11-Nov,1698796800000.0,Regalia,Regalia Departamental,Gran Chaco,3.95379742
 Pando,2024,8,Ago,08-Ago,1722470400000.0,Regalia,Regalia Compensatoria,Pando,0.57346744
@@ -1330,6 +1333,7 @@ Tarija,2016,4,Abr,04-Abr,1459468800000.0,Regalia,Regalia Departamental,Gran Chac
 Pando,2018,4,Abr,04-Abr,1522540800000.0,Regalia,Regalia Compensatoria,Pando,0.86529224
 Santa Cruz,2018,2,Feb,02-Feb,1517443200000.0,Regalia,Regalia Departamental,Santa Cruz,4.87252438
 Santa Cruz,2007,2,Feb,02-Feb,1170288000000.0,Regalia,Regalia Departamental,Santa Cruz,3.85693944
+Chuquisaca,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Departamental,Chuquisaca,1.50557536
 Cochabamba,2019,4,Abr,04-Abr,1554076800000.0,Regalia,Regalia Departamental,Cochabamba,1.09299016
 Beni,2021,9,Sep,09-Sep,1630454400000.0,Regalia,Regalia Compensatoria,Beni,1.45427692
 Chuquisaca,2013,4,Abr,04-Abr,1364774400000.0,Regalia,Regalia Departamental,Chuquisaca,7.21631744
@@ -1376,7 +1380,9 @@ Cochabamba,2021,3,Mar,03-Mar,1614556800000.0,Regalia,Regalia Departamental,Cocha
 Chuquisaca,2024,1,Ene,01-Ene,1704067200000.0,Regalia,Regalia Departamental,Chuquisaca,3.59289975
 Tarija,2023,4,Abr,04-Abr,1680307200000.0,Regalia,Regalia Departamental,Tarija,5.91977293
 Chuquisaca,2006,12,Dic,12-Dic,1164931200000.0,Regalia,Regalia Departamental,Chuquisaca,0.73998164
+Cochabamba,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Departamental,Cochabamba,0.27677546
 IDH,2011,12,Dic,12-Dic,1322697600000.0,IDH,IDH,IDH,127.358099
+Beni,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Compensatoria,Beni,0.65582949
 Tarija,2019,11,Nov,11-Nov,1572566400000.0,Regalia,Regalia Departamental,Gran Chaco,6.67063056
 TGN,2022,7,Jul,07-Jul,1656633600000.0,Participacion,Participacion TGN,TGN,15.97713867
 Pando,2017,8,Ago,08-Ago,1501545600000.0,Regalia,Regalia Compensatoria,Pando,0.94169796
@@ -1472,6 +1478,7 @@ Santa Cruz,2024,8,Ago,08-Ago,1722470400000.0,Regalia,Regalia Departamental,Santa
 Tarija,2022,8,Ago,08-Ago,1659312000000.0,Regalia,Regalia Departamental,Gran Chaco,6.0322423
 Chuquisaca,2018,1,Ene,01-Ene,1514764800000.0,Regalia,Regalia Departamental,Chuquisaca,3.57773384
 IDH,2025,5,May,05-May,1746057600000.0,IDH,IDH,IDH,35.853164
+Tarija,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Departamental,Tarija,2.55786003
 Pando,2007,2,Feb,02-Feb,1170288000000.0,Regalia,Regalia Compensatoria,Pando,0.70382804
 IDH,2025,1,Ene,01-Ene,1735689600000.0,IDH,IDH,IDH,41.871217
 Tarija,2021,12,Dic,12-Dic,1638316800000.0,Regalia,Regalia Departamental,Tarija,5.94269506
@@ -1762,6 +1769,7 @@ Chuquisaca,2010,7,Jul,07-Jul,1277942400000.0,Regalia,Regalia Departamental,Chuqu
 Cochabamba,2020,5,May,05-May,1588291200000.0,Regalia,Regalia Departamental,Cochabamba,0.74874649
 Beni,2019,1,Ene,01-Ene,1546300800000.0,Regalia,Regalia Compensatoria,Beni,2.11293309
 Beni,2007,3,Mar,03-Mar,1172707200000.0,Regalia,Regalia Compensatoria,Beni,1.08250606
+Tarija,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Departamental,Gran Chaco,2.09279458
 Chuquisaca,2013,12,Dic,12-Dic,1385856000000.0,Regalia,Regalia Departamental,Chuquisaca,6.42075503
 TGN,2007,6,Jun,06-Jun,1180656000000.0,Participacion,Participacion TGN,TGN,10.70882665
 Pando,2020,5,May,05-May,1588291200000.0,Regalia,Regalia Compensatoria,Pando,0.70723693
@@ -1820,6 +1828,7 @@ Cochabamba,2011,8,Ago,08-Ago,1312156800000.0,Regalia,Regalia Departamental,Cocha
 Pando,2015,2,Feb,02-Feb,1422748800000.0,Regalia,Regalia Compensatoria,Pando,1.11746582
 Chuquisaca,2007,3,Mar,03-Mar,1172707200000.0,Regalia,Regalia Departamental,Chuquisaca,0.32902942
 Santa Cruz,2019,10,Oct,10-Oct,1569888000000.0,Regalia,Regalia Departamental,Santa Cruz,9.73894062
+Pando,2025,12,Dic,12-Dic,1764547200000.0,Regalia,Regalia Compensatoria,Pando,0.32791474
 Tarija,2006,4,Abr,04-Abr,1143849600000.0,Regalia,Regalia Departamental,Tarija,11.300844
 Beni,2023,2,Feb,02-Feb,1675209600000.0,Regalia,Regalia Compensatoria,Beni,1.64126593
 Pando,2014,5,May,05-May,1398902400000.0,Regalia,Regalia Compensatoria,Pando,1.78722238
@@ -2004,6 +2013,7 @@ Cochabamba,2012,6,Jun,06-Jun,1338508800000.0,Regalia,Regalia Departamental,Cocha
 Cochabamba,2007,11,Nov,11-Nov,1193875200000.0,Regalia,Regalia Departamental,Cochabamba,3.26763714
 Tarija,2013,9,Sep,09-Sep,1377993600000.0,Regalia,Regalia Departamental,Tarija,40.24992452
 Pando,2024,4,Abr,04-Abr,1711929600000.0,Regalia,Regalia Compensatoria,Pando,0.60197452
+TGN,2025,12,Dic,12-Dic,1764547200000.0,Participacion,Participacion TGN,TGN,5.9024654
 Chuquisaca,2021,12,Dic,12-Dic,1638316800000.0,Regalia,Regalia Departamental,Chuquisaca,2.78610598
 TGN,2017,1,Ene,01-Ene,1483228800000.0,Participacion,Participacion TGN,TGN,13.82374277
 Tarija,2016,3,Mar,03-Mar,1456790400000.0,Regalia,Regalia Departamental,Tarija,14.80312917
