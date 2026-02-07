@@ -141,7 +141,7 @@ WHERE lf.mes = 'DICIEMBRE2'
 GROUP by ui.funcionario,lf.llamadas_saliente
 ORDER BY total_llamadas desc;",LLAMADAS_CENTRAL2,llamadasMhe,7
 mhe,2025-11-18T17:51:56.214504+0000,30,virtual,public,"select gestion::varchar, mes, mes_corto, case when mes < 10 then '0' || mes::varchar || '-' || mes_corto else mes::varchar || '-' || mes_corto end as mes_str,  fecha, gas_natural_mmmcd, gas_natural_variacion, petroleo_mbpd, petroleo_variacion, glp_tmd, glp_variacion from tmp_produccion_mensual",Producción Mensual,mhe,6
-LlamadasMhe,2026-01-19T21:33:54.446135+0000,61,virtual,public,"SELECT 
+LlamadasMhe,2026-02-06T15:45:10.266770+0000,61,virtual,public,"SELECT 
     ui.funcionario,
     lf.llamadas_saliente,
     COUNT(*) AS total_llamadas,
@@ -152,10 +152,25 @@ LlamadasMhe,2026-01-19T21:33:54.446135+0000,61,virtual,public,"SELECT
 FROM llamadas_fin lf
 INNER JOIN usuario_interno ui 
     ON ui.interno = lf.llamadas_saliente
-WHERE lf.mes = 'Diciembre3'
+WHERE lf.mes = 'ENERO'
 GROUP BY ui.funcionario, lf.llamadas_saliente
 ORDER BY total_llamadas DESC;
 ",LLAMADAS_8_TABLA,llamadasMhe,7
+LlamadasMhe,2026-02-06T15:31:33.051715+0000,62,virtual,public,"SELECT 
+    ui.funcionario,
+    lf.llamadas_saliente,
+    COUNT(*) AS total_llamadas,
+    ROUND(
+        (SUM(lf.duracion_min) + SUM(lf.duracion_seg) / 60.0),
+        2
+    ) AS minutos_finales
+FROM llamadas_fin lf
+INNER JOIN usuario_interno ui 
+    ON ui.interno = lf.llamadas_saliente
+WHERE lf.mes = 'ENERO'
+GROUP BY ui.funcionario, lf.llamadas_saliente
+ORDER BY total_llamadas DESC;
+",llamadas de enero,llamadasMhe,7
 LlamadasMhe,2026-01-15T17:44:42.591385+0000,58,virtual,public,"SELECT 
     ui.funcionario,
     lf.llamadas_saliente,
@@ -246,6 +261,21 @@ inner join usuario_interno ui on ui.interno = lf.llamadas_saliente
 WHERE lf.mes = 'DICIEMBRE'
 GROUP by ui.funcionario,lf.llamadas_saliente , lf.mes 
 ORDER BY total_llamadas DESC;",LLAMADAS DE DICIEMBRE,llamadasMhe,7
+LlamadasMhe,2026-02-06T15:44:11.335178+0000,59,virtual,public,"SELECT 
+    ui.funcionario,
+    lf.llamadas_saliente,
+    COUNT(*) AS total_llamadas,
+    ROUND(
+        (SUM(lf.duracion_min) + SUM(lf.duracion_seg) / 60.0),
+        2
+    ) AS minutos_finales
+FROM llamadas_fin lf
+INNER JOIN usuario_interno ui 
+    ON ui.interno = lf.llamadas_saliente
+WHERE lf.mes = 'ENERO'
+GROUP BY ui.funcionario, lf.llamadas_saliente
+ORDER BY total_llamadas DESC;
+",reportellamadas-desde-el-8,llamadasMhe,7
 LlamadasMhe,2025-12-03T15:27:07.558461+0000,54,virtual,public,"SELECT ui.funcionario,
 lf.llamadas_saliente, 
 COUNT(*) AS total_llamadas, 
@@ -268,20 +298,4 @@ FROM llamadas_fin lf
 GROUP BY lf.llamadas_saliente
 HAVING (SUM(lf.duracion_min) * 60 + SUM(lf.duracion_seg)) > 900
 ORDER BY Minutos_Totales DESC;",llamadas_mhe_TOTAL 11/25/2025 11:44:22,llamadasMhe,7
-LlamadasMhe,2026-01-19T21:25:36.673838+0000,59,virtual,public,"SELECT 
-    ui.funcionario,
-    lf.llamadas_saliente,
-    COUNT(*) AS total_llamadas,
-    ROUND(
-        (SUM(lf.duracion_min) + SUM(lf.duracion_seg) / 60.0),
-        2
-    ) AS minutos_finales
-FROM llamadas_fin lf
-INNER JOIN usuario_interno ui 
-    ON ui.interno = lf.llamadas_saliente
-WHERE lf.mes = 'Diciembre3'
-GROUP BY ui.funcionario, lf.llamadas_saliente
-ORDER BY total_llamadas DESC;
-",reportellamadas-desde-el-8,llamadasMhe,7
 datos_anh_ypfb,2025-11-18T22:34:23.516374+0000,37,physical,public,,gasolina,base de datos anh,1
-datos_anh_ypfb,2025-11-17T14:25:58.903813+0000,15,physical,public,,glpmi,base de datos anh,1
