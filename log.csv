@@ -31,3 +31,9 @@ modified,LlamadasMhe,llamadasMhe,LLAMADAS_8_TABLA,2026-03-14T05:40:46.610496+00:
 modified,LlamadasMhe,llamadasMhe,reportellamadas-desde-el-8,2026-03-14T05:40:46.610496+00:00
 modified,LlamadasMhe,llamadasMhe,LLAMADAS_8_TABLA,2026-04-11T05:56:07.095082+00:00
 modified,LlamadasMhe,llamadasMhe,reportellamadas-desde-el-8,2026-04-11T05:56:07.095082+00:00
+added,centralmysql,CENTRALMYSQL,users,2026-06-27T15:19:44.182888+00:00
+added,coneccion_central_telefonica,Coneccion central telefonica,llamadas por mes vencido tabla,2026-06-27T15:19:44.182888+00:00
+added,sqlite,SQLite,users,2026-06-27T15:19:44.182888+00:00
+deleted,LlamadasMhe,llamadasMhe,llamadas_mhe_TOTAL 11/25/2025 11:44:22,2026-06-27T15:19:44.182888+00:00
+deleted,LlamadasMhe,llamadasMhe,reportellamadas-desde-el-8,2026-06-27T15:19:44.182888+00:00
+deleted,datos_anh_ypfb,base de datos anh,gasolina,2026-06-27T15:19:44.182888+00:00

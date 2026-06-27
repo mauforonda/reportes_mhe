@@ -14,10 +14,17 @@ session = requests.Session()
 datadir = Path("data")
 
 
+def catalog_fallback(row):
+    database_name = row["database.database_name"]
+    if pd.notna(database_name) and database_name:
+        return slugify(database_name, separator="_")
+    return f"dataset_{row['id']}"
+
+
 def list_datasets(session):
     datasets_json = session.get(f"{BASE_URL}/api/v1/dataset/", verify=False).json()
     datasets_df = pd.json_normalize(datasets_json["result"])
-    return datasets_df[
+    datasets_df = datasets_df[
         [
             "catalog",
             "changed_on_utc",
@@ -30,6 +37,11 @@ def list_datasets(session):
             "database.id",
         ]
     ]
+    missing_catalog = datasets_df["catalog"].isna()
+    datasets_df.loc[missing_catalog, "catalog"] = datasets_df.loc[
+        missing_catalog
+    ].apply(catalog_fallback, axis=1)
+    return datasets_df
 
 
 def fetch_dataset(session, dataset_id, chunk_size=10000, max_rows=None, verify=False):
