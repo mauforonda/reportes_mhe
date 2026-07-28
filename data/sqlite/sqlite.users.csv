@@ -1,5 +1,4 @@
 area,extension,password,name,voicemail,ringtimer,noanswer,recording,outboundcid,sipname,mohclass,noanswer_cid,busy_cid,chanunavail_cid,noanswer_dest,busy_dest,chanunavail_dest
-ALMACENES,1608,,almacenes EL ALTO,novm,0,,,22186700,,default,,,,,,
 ALMACENES EL ALTO,1609,,Almacenes el alto -2,novm,0,,,22186700,,default,,,,,,
 ALMACENES2,1604,,Almacenes2,novm,0,,,22186700,,default,,,,,,
 DESP,103,,DESP - Archivo Despacho,novm,0,,,22186700,,default,,,,,,
@@ -69,6 +68,7 @@ PEVD,880,,PEVD Seguridad,novm,0,,,,,default,,,,,,
 SALA,100,,SALA-DESPACHO,novm,0,,,22186715,,default,,,,,,
 SANTA,1504,,Santa Cruz 2,novm,0,,,22186700,,default,,,,,,
 SEGURIDAD,1170,,Seguridad XBBA,novm,0,,,,,default,,,,,,
+SEGURIDAD,1608,,Seguridad EL ALTO,novm,0,,,22186700,,default,,,,,,
 SEGURIDAD,250,,Seguridad,novm,0,,,22186700,,default,,,,,,
 TARIJA,1401,,Tarija,novm,0,,,22186700,,default,,,,,,
 TARIJA,1404,,Tarija,novm,0,,,22186700,,default,,,,,,
