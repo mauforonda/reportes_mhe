@@ -27,6 +27,7 @@ extension,password,name,voicemail,ringtimer,noanswer,recording,outboundcid,sipna
 107,,DESP - Teniente despacho,novm,0,,,22186700,,default,,,,,,
 108,,DESP - ,novm,0,,,22186700,,default,,,,,,
 109,,DESP - Secretaria Despacho,novm,0,,,,,default,,,,,,
+110,,DESP - Asesor Jose Parada,novm,0,,,22186700,,default,,,,,,
 1170,,Seguridad XBBA,novm,0,,,,,default,,,,,,
 1201,,VMICTAH - Vice Tatiana Genuzio,novm,0,,,22186700,,default,,,,,,
 1202,,VMICTAH - Secretaria Noemi Lujan,novm,0,,,22186700,,default,,,,,,
